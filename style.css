@@ -3,6 +3,19 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 50px;
+}
+
+#calcScreen {
+    border-style: solid;
+    border-color: black;
+    border-width: 5px;
+    width: 315px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
 }
 
 #buttonContainer {
@@ -24,4 +37,12 @@ button {
     font-size: 2vh;
     height: 80px;
     width: 80px;
+}
+
+button:hover {
+    background-color: #D3D3D3;
+}
+
+button:active {
+    background-color: gray;
 }
