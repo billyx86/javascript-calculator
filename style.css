@@ -46,3 +46,15 @@ button:hover {
 button:active {
     background-color: gray;
 }
+
+.button {
+    background-color: #b56700;
+}
+
+.num-button, .decimal-button {
+    background-color: antiquewhite;
+}
+
+.equals-button {
+    background-color: #00611a;
+}
