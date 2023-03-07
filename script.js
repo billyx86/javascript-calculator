@@ -12,7 +12,7 @@ const numberButton = document.querySelectorAll(".num-button");
 const decimalButton = document.querySelector(".decimal-button");
 
 let screenReset = false;
-let currentOperation;
+let currentOperation = "0";
 let initialNumber = 0;
 let secondNumber = 0;
 
@@ -50,7 +50,7 @@ function operate(num1, num2, operation) {
 plusSign.addEventListener("click", function() {
     if(initialNumber !== 0) {
         secondNumber = parseFloat(calcScreen.textContent);
-        calcScreen.textContent = operate(initialNumber, secondNumber, currentOperation);
+        calcScreen.textContent = parseFloat(operate(initialNumber, secondNumber, currentOperation).toFixed(11));
     }
     initialNumber = parseFloat(calcScreen.textContent);
     currentOperation = "add";
@@ -60,7 +60,7 @@ plusSign.addEventListener("click", function() {
 subtractSign.addEventListener("click", function() {
     if(initialNumber !== 0) {
         secondNumber = parseFloat(calcScreen.textContent);
-        calcScreen.textContent = operate(initialNumber, secondNumber, currentOperation);
+        calcScreen.textContent = parseFloat(operate(initialNumber, secondNumber, currentOperation).toFixed(11));
     }
     initialNumber = parseFloat(calcScreen.textContent);
     currentOperation = "subtract";
@@ -70,7 +70,7 @@ subtractSign.addEventListener("click", function() {
 multiplySign.addEventListener("click", function() {
     if(initialNumber !== 0) {
         secondNumber = parseFloat(calcScreen.textContent);
-        calcScreen.textContent = operate(initialNumber, secondNumber, currentOperation);
+        calcScreen.textContent = parseFloat(operate(initialNumber, secondNumber, currentOperation).toFixed(11));
     }
     initialNumber = parseFloat(calcScreen.textContent);
     currentOperation = "multiply";
@@ -80,7 +80,7 @@ multiplySign.addEventListener("click", function() {
 divideSign.addEventListener("click", function() {
     if(initialNumber !== 0) {
         secondNumber = parseFloat(calcScreen.textContent);
-        calcScreen.textContent = operate(initialNumber, secondNumber, currentOperation);
+        calcScreen.textContent = parseFloat(operate(initialNumber, secondNumber, currentOperation).toFixed(11));
     }
     initialNumber = parseFloat(calcScreen.textContent);
     currentOperation = "divide";
@@ -89,7 +89,11 @@ divideSign.addEventListener("click", function() {
 
 equalsSign.addEventListener("click", function() {
     secondNumber = parseFloat(calcScreen.textContent);
-    calcScreen.textContent = operate(initialNumber, secondNumber, currentOperation);
+    calcScreen.textContent = parseFloat(operate(initialNumber, secondNumber, currentOperation).toFixed(11));
+    initialNumber = 0;
+    secondNumber = 0;
+    currentOperation = "0";
+    screenReset = true;
 })
 
 clearScreen.addEventListener("click", function() {
@@ -107,11 +111,13 @@ clearMemory.addEventListener("click", function() {
 
 for (let i = 0; i < numberButton.length; i++) {
     numberButton[i].addEventListener("click", function() {
-        if(calcScreen.textContent === "0" || screenReset) {
-            calcScreen.textContent = numberButton[i].textContent;
-            screenReset = false;
-        } else {
-            calcScreen.textContent += numberButton[i].textContent;
+        if (calcScreen.textContent.length <= 18 || screenReset === true) {
+                if(calcScreen.textContent === "0" || screenReset) {
+                calcScreen.textContent = numberButton[i].textContent;
+                screenReset = false;
+            } else {
+                calcScreen.textContent += numberButton[i].textContent;
+            }
         }
     });
 }
